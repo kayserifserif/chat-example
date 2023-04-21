@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+    <form id="form" action="">
+      <button type="submit">Send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      const form = document.getElementById("form");
+      const input = document.getElementById("input");
+
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        socket.emit("message", "this is a message");
+      });
+
+      socket.on('message', msg => {
+        console.log(msg);
+      });
+    </script>
+  </body>
+</html>
